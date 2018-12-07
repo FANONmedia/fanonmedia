@@ -11,7 +11,8 @@ FANONmedia is:
 * feature-rich and extensible, both on-wiki and with hundreds of extensions;
 * scalable and suitable for both small and large sites;
 * simple to install, working on most hardware/software combinations; and
-* available in your language.
+* available in your language;
+*Compatible with anything written for or works on MediaWiki.
 
 For system requirements, installation, and upgrade details, see the files
 RELEASE-NOTES, INSTALL, and UPGRADE.
