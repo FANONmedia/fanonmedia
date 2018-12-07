@@ -24,50 +24,6 @@
  * @ingroup Maintenance
  */
 
-require_once __DIR__ . '/Maintenance.php';
-
-/**
- * Maintenance script to change the password of a given user.
- *
- * @ingroup Maintenance
- */
-class ChangePassword extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->addOption( "user", "The username to operate on", false, true );
-		$this->addOption( "userid", "The user id to operate on", false, true );
-		$this->addOption( "password", "The password to use", true, true );
-		$this->addDescription( "Change a user's password" );
-	}
-
-	public function execute() {
-		if ( $this->hasOption( "user" ) ) {
-			$user = User::newFromName( $this->getOption( 'user' ) );
-		} elseif ( $this->hasOption( "userid" ) ) {
-			$user = User::newFromId( $this->getOption( 'userid' ) );
-		} else {
-			$this->fatalError( "A \"user\" or \"userid\" must be set to change the password for" );
-		}
-		if ( !$user || !$user->getId() ) {
-			$this->fatalError( "No such user: " . $this->getOption( 'user' ) );
-		}
-		$password = $this->getOption( 'password' );
-		try {
-			$status = $user->changeAuthenticationData( [
-				'username' => $user->getName(),
-				'password' => $password,
-				'retype' => $password,
-			] );
-			if ( !$status->isGood() ) {
-				throw new PasswordError( $status->getWikiText( null, null, 'en' ) );
-			}
-			$user->saveSettings();
-			$this->output( "Password set for " . $user->getName() . "\n" );
-		} catch ( PasswordError $pwe ) {
-			$this->fatalError( $pwe->getText() );
-		}
-	}
-}
-
-$maintClass = ChangePassword::class;
-require_once RUN_MAINTENANCE_IF_MAIN;
+<?php 
+echo "Hey, you cannot change your password! There's no need for that!"; 
+?>
